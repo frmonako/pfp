@@ -1,0 +1,8 @@
+[
+    { "path": "dtb/discord.png", "filename": "discord.png", "title": "Forest View", "keywords": ["forest", "trees"] },
+    { "path": "dtb/discord2.png", "filename": "discord2.png", "title": "Mountain Landscape", "keywords": ["forest", "mountains", "landscape"] },
+    { "path": "dtb/discord3.png", "filename": "discord3.png", "title": "Wildlife Lion", "keywords": ["forest", "wildlife", "lion"] },
+    { "path": "dtb/discord4.png", "filename": "pd.png", "title": "Wildlife Tiger", "keywords": ["forest", "wildlife", "tiger"] },
+    { "path": "dtb/discord5.png", "filename": "discord5.png", "title": "Artistic Design", "keywords": ["forest", "art", "design"] },
+    { "path": "dtb/luf.gif", "filename": "luf.gif", "title": "Artistic Design", "keywords": ["forest", "art", "design"] }
+]

@@ -1,0 +1,413 @@
+/* Import the Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif; /* Apply Inter font globally */
+    background-color: #121212;
+    color: #ffffff;
+    height: 100vh; /* Remove flex centering for scrollable content */
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+    padding-top: 0;
+    margin-top: 70px; /* Ensure content starts below the top bar */
+    height: calc(100vh - 70px); /* Adjust height to account for the top bar */
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-width: 900px; /* Reduced maximum width of the container */
+    margin-left: auto; /* Center the container horizontally */
+    margin-right: auto; /* Center the container horizontally */
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #00aaff;
+}
+
+.search-wrapper {
+    display: inline-block;
+    position: relative;
+}
+
+.search-bar {
+    width: 300px;
+    padding: 10px 15px;
+    border: 2px solid #00aaff;
+    border-radius: 30px; /* Increase corner radius */
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+    border-color: #0077cc;
+    box-shadow: 0 0 10px #0077cc;
+}
+
+.search-button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #00aaff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #0077cc;
+    box-shadow: 0 0 10px #0077cc;
+}
+
+.image-gallery {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 150px)); /* Ensure cards always maintain their minimum size */
+    gap: 15px; /* Consistent spacing between cards both horizontally and vertically */
+    padding: 10px;
+    justify-content: center; /* Center the grid horizontally */
+    align-items: start; /* Align items to the top */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .image-gallery {
+        grid-template-columns: repeat(3, 1fr); /* 3 cards per line */
+    }
+}
+
+.image-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensure the image fits within the container without being cut */
+    border-radius: 15px; /* Increase corner radius */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add smooth hover animation */
+}
+
+.image-gallery div {
+    width: 100%; /* Allow cards to adapt to the grid column size */
+    aspect-ratio: 1; /* Ensure cards are square */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e1e1e;
+    border-radius: 15px; /* Increase corner radius */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    position: relative; /* For positioning */
+    cursor: pointer; /* Indicate clickable area */
+    transition: outline 0.3s ease, outline-width 0.3s ease; /* Smooth intro and outro for outline */
+}
+
+.image-gallery div:hover {
+    outline: 4px solid #00aaff; /* Thicker blue outline on hover */
+    box-shadow: none; /* Remove shadow on hover */
+}
+
+/* Remove the download button styles */
+.download-button {
+    display: none; /* Ensure the download button is hidden */
+}
+
+/* Overlay styles */
+.overlay {
+    display: flex; /* Ensure visibility */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    justify-content: center;
+    align-items: flex-start; /* Align content to the top */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 20px; /* Add padding for better spacing */
+    box-sizing: border-box; /* Ensure padding doesn't cause overflow */
+}
+
+.overlay-content {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 15px; /* Increase corner radius */
+    text-align: center; /* Center text horizontally */
+    color: #ffffff;
+    max-width: 600px; /* Ensure the overlay fits on smaller screens */
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    gap: 20px; /* Add spacing between sections */
+    box-sizing: border-box; /* Prevent overflow due to padding */
+    align-items: center; /* Center all child elements horizontally */
+}
+
+.overlay-details {
+    display: flex; /* Align image and details side by side */
+    gap: 10px; /* Default spacing between image and details */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    max-height: calc(100% - 40px); /* Ensure the details fit within the overlay */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+}
+
+/* Media query for smaller devices */
+@media (max-width: 768px) {
+    .overlay-details {
+        flex-direction: column; /* Stack image and info vertically */
+        align-items: center; /* Center items horizontally */
+        gap: 15px; /* Adjust spacing for smaller screens */
+    }
+
+    .overlay img {
+        max-width: 90%; /* Ensure the image scales down to fit smaller screens */
+        max-height: 200px; /* Limit the height of the image */
+    }
+
+    .overlay .overlay-text {
+        max-height: none; /* Remove height restriction for text on smaller screens */
+        width: 100%; /* Ensure the text container takes full width */
+    }
+}
+
+/* Add spacing for larger devices */
+@media (min-width: 1024px) {
+    .overlay-details {
+        gap: 30px; /* Increase spacing between image and details on larger screens */
+    }
+}
+
+.overlay img {
+    width: auto; /* Allow the image to scale dynamically */
+    height: auto; /* Maintain the aspect ratio */
+    max-width: 100%; /* Ensure the image fits within the overlay */
+    max-height: 300px; /* Limit the height of the image */
+    object-fit: contain; /* Ensure the image is not cut */
+    border-radius: 15px; /* Increase corner radius */
+    position: relative; /* Allow positioning relative to the container */
+}
+
+.overlay .overlay-text {
+    flex: 1; /* Allow the text section to take up remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the title and download button vertically */
+    align-items: center; /* Center the title and download button horizontally */
+    gap: 10px; /* Reduce the gap between the title and file sizes */
+    overflow-y: auto; /* Enable scrolling for text content if it overflows */
+    max-height: 300px; /* Limit the height of the text container */
+    text-align: center; /* Center text alignment */
+}
+
+.overlay .overlay-text p {
+    font-size: 1.5rem; /* Make the title bigger */
+    font-weight: bold;
+}
+
+.overlay .close-button {
+    position: absolute; /* Position the close button at the top-right */
+    top: 20px; /* Move the button further inside the overlay */
+    right: 20px; /* Move the button further inside the overlay */
+    background-color: transparent; /* Transparent background */
+    color: #ffffff;
+    border: none;
+    font-size: 1.5rem; /* Make the cross larger */
+    cursor: pointer;
+    z-index: 1001; /* Ensure it appears above other elements */
+}
+
+.overlay .close-button:hover {
+    color: #ff4444; /* Change color on hover */
+}
+
+.overlay .download-overlay-button {
+    background-color: #00aaff;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px; /* Increase corner radius */
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    align-self: center; /* Align the download button to the top */
+}
+
+.overlay .download-overlay-button:hover {
+    background-color: #0077cc;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes outlinePulse {
+    0% {
+        outline-width: 2px;
+    }
+    50% {
+        outline-width: 4px;
+    }
+    100% {
+        outline-width: 2px;
+    }
+}
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1e1e1e;
+    padding: 10px 0; /* Adjust padding for better alignment */
+    display: flex;
+    justify-content: center; /* Center the container horizontally */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.top-bar-container {
+    width: 100%;
+    max-width: 900px; /* Match the width of the .container */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Add spacing between the icon, search bar, and button */
+    padding: 0 20px; /* Add horizontal padding for smaller screens */
+    box-sizing: border-box; /* Include padding in width calculation */
+    overflow: hidden; /* Prevent overflow in the top bar */
+    justify-content: space-between; /* Space between the icon and the search bar */
+}
+
+.top-search-bar {
+    flex: 0 1 auto; /* Allow the search bar to shrink and grow */
+    max-width: 400px; /* Set a maximum width for the search bar */
+    padding: 10px 15px;
+    border: 2px solid #00aaff;
+    border-radius: 25px;
+    background-color: #121212;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.top-search-bar:focus {
+    border-color: #0077cc;
+    box-shadow: 0 0 10px #0077cc;
+}
+
+.top-search-button {
+    flex-shrink: 0; /* Prevent the button from shrinking */
+    padding: 10px 20px;
+    background-color: #00aaff;
+    border: none;
+    border-radius: 25px;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.top-search-button:hover {
+    background-color: #0077cc;
+    box-shadow: 0 0 10px #0077cc;
+}
+
+.top-bar-icon {
+    flex-shrink: 0; /* Prevent the icon from shrinking */
+    height: 50px; /* Icon height */
+    width: auto; /* Maintain aspect ratio */
+    margin-right: auto; /* Push the icon to the left of the container */
+    object-fit: contain; /* Ensure the icon maintains its aspect ratio */
+}
+
+.recommendations-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Square cards */
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%; /* Take full width of the overlay */
+}
+
+.recommendation-card {
+    width: 100%; /* Ensure the card takes full width of the grid column */
+    height: 100%; /* Ensure the card takes full height of the grid row */
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+    background-color: #1e1e1e;
+    border-radius: 15px; /* Increase corner radius */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: outline 0.3s ease, outline-width 0.3s ease; /* Smooth intro and outro for outline */
+    overflow: hidden; /* Ensure the image does not overflow the card */
+}
+
+.recommendation-card:hover {
+    outline: 4px solid #00aaff; /* Thicker blue outline on hover */
+    background-color: #1e1e1e; /* Retain background color */
+}
+
+.recommendation-card img {
+    width: 100%; /* Ensure the image fills the card horizontally */
+    height: 100%; /* Ensure the image fills the card vertically */
+    object-fit: cover; /* Ensure the image maintains its aspect ratio while filling the card */
+    border-radius: 15px; /* Increase corner radius */
+}
+
+.recommendation-text {
+    display: none; /* Hide the title in recommendation cards */
+}
+
+.overlay .info-card {
+    background-color: #1a1a1a; /* Darker background for info cards */
+    color: #ffffff;
+    padding: 5px 10px; /* Add horizontal padding for content */
+    border-radius: 10px; /* Increase corner radius */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    font-size: 0.8rem; /* Make the size indication smaller */
+    text-align: center;
+    display: inline-block; /* Ensure the card width depends on its content */
+    margin-top: 3px; /* Reduce spacing between cards */
+}
+
+.overlay .size-container {
+    display: flex; /* Align size cards side by side */
+    gap: 8px; /* Slightly reduce spacing between size cards */
+    margin-top: 0; /* Remove extra spacing above the size container */
+    justify-content: flex-start; /* Align size cards to the left */
+}
+
+.overlay .pfp-card {
+    background-color: #1a1a1a; /* Darker background for the card */
+    border-radius: 15px; /* Increase corner radius */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
+    width: 200px; /* Reduced width for the card */
+    height: 200px; /* Reduced height for the card */
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+    overflow: hidden; /* Ensure the image does not overflow the card */
+}
+
+.overlay .pfp-card img {
+    width: 100%; /* Ensure the image fills the card horizontally */
+    height: 100%; /* Ensure the image fills the card vertically */
+    object-fit: cover; /* Ensure the image maintains its aspect ratio while filling the card */
+    border-radius: 15px; /* Increase corner radius */
+}

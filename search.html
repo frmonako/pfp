@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <img src="icon.png" alt="Icon" class="top-bar-icon">
+            <input type="text" class="top-search-bar" placeholder="Search..." onkeypress="handleSearch(event)">
+        </div>
+    </div>
+    <div class="container">
+        <div id="image-gallery" class="image-gallery"></div>
+    </div>
+    <script>
+        function redirectToSearch() {
+            const searchTerm = document.querySelector('.top-search-bar').value.trim();
+            if (searchTerm) {
+                window.location.href = `search.html?query=${encodeURIComponent(searchTerm)}`;
+            }
+        }
+
+        function handleSearch(event) {
+            if (event.key === 'Enter') {
+                redirectToSearch();
+            }
+        }
+    </script>
+    <script src="search.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Homepage</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="search-wrapper">
+            <h1 class="title">Welcome to Our Website</h1>
+            <div class="search-bar-container">
+                <input type="text" class="search-bar" placeholder="Search..." onkeypress="handleSearch(event)">
+            </div>
+        </div>
+        <div id="layout-gallery" class="image-gallery">
+            <!-- Example cards -->
+            <div>
+                <img src="dtb/discord.png" alt="Example Image 1">
+                <button class="download-button">Download</button>
+            </div>
+            <div>
+                <img src="dtb/discord2.png" alt="Example Image 2">
+                <button class="download-button">Download</button>
+            </div>
+            <div>
+                <img src="dtb/discord3.png" alt="Example Image 3">
+                <button class="download-button">Download</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function redirectToSearch() {
+            const searchTerm = document.querySelector('.search-bar').value.trim();
+            if (searchTerm) {
+                window.location.href = `search.html?query=${encodeURIComponent(searchTerm)}`;
+            }
+        }
+    </script>
+</body>
+</html>
